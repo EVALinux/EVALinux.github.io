@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="搭建博客的步骤参考GitHub+Hexo 搭建个人网站详细教程.原教程完成于2019年，部分步骤已经有了一些改变。所以这里列出来基于上述教程的一些注意事项。 后续有了新的更新，也会在这篇文档中进行增补和修正。 2021-02-02  首次提交:搭建的相关说明。 2021-02-03  更新:增加从远程库clone后无法正常使用hexo进行调试的说明。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于hexo搭建博客">
+<meta property="og:url" content="http://example.com/2021/02/03/first-step/index.html">
+<meta property="og:site_name" content="JWS">
+<meta property="og:description" content="搭建博客的步骤参考GitHub+Hexo 搭建个人网站详细教程.原教程完成于2019年，部分步骤已经有了一些改变。所以这里列出来基于上述教程的一些注意事项。 后续有了新的更新，也会在这篇文档中进行增补和修正。 2021-02-02  首次提交:搭建的相关说明。 2021-02-03  更新:增加从远程库clone后无法正常使用hexo进行调试的说明。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-03T06:30:55.446Z">
+<meta property="article:modified_time" content="2021-02-03T07:22:12.887Z">
+<meta property="article:author" content="heyuhang">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/02/03/first-step/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>基于hexo搭建博客 | JWS</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">JWS</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Java without sugar </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heyuhang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/03/first-step/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heyuhang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JWS">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于hexo搭建博客
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-02-03 14:30:55 / 修改时间：15:22:12" itemprop="dateCreated datePublished" datetime="2021-02-03T14:30:55+08:00">2021-02-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>搭建博客的步骤参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">GitHub+Hexo 搭建个人网站详细教程</a>.<br>原教程完成于2019年，部分步骤已经有了一些改变。<br>所以这里列出来基于上述教程的一些注意事项。</p>
+<p>后续有了新的更新，也会在这篇文档中进行增补和修正。</p>
+<p>2021-02-02  首次提交:搭建的相关说明。</p>
+<p>2021-02-03  更新:增加从远程库clone后无法正常使用hexo进行调试的说明。</p>
+<a id="more"></a>
+<hr>
+<ul>
+<li><p>绑定域名</p>
+<p>绑定域名环节中，原文会使用<code> 192.30.252.153</code>作为域名解析的记录值。但现在使用这个地址会收到GitHub的警告邮件，原文如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">The page build completed successfully, but returned the following warning for the &#96;master&#96; branch:</span><br><span class="line"></span><br><span class="line">The custom domain for your GitHub Pages site is pointed at an outdated IP address. You must update your site&#39;s DNS records if you&#39;d like it to be available via your custom domain. For more information, see https:&#x2F;&#x2F;  docs.github.com&#x2F;github&#x2F;working-with-github-pages&#x2F;configuring-a-custom-domain-for-your-github-pages-site.</span><br><span class="line"></span><br><span class="line">For information on troubleshooting Jekyll see:</span><br><span class="line"></span><br><span class="line">https:&#x2F;&#x2F;docs.github.com&#x2F;articles&#x2F;troubleshooting-jekyll-builds</span><br><span class="line"></span><br><span class="line">If you have any questions you can submit a request on the Contact GitHub page at https:&#x2F;&#x2F;support.github.com&#x2F;contact?repo_id&#x3D;335141802&amp;page_build_id&#x3D;230873589</span><br></pre></td></tr></table></figure>
+<p>每次部署都会收到这样的邮件，按照邮件提示，我们使用的IP地址已过时。最终按照提示找到了新的地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">185.199.108.153</span><br><span class="line">185.199.109.153</span><br><span class="line">185.199.110.153</span><br><span class="line">185.199.111.153</span><br></pre></td></tr></table></figure></li>
+<li><p>绑定域名之后每次部署都会覆盖掉我们的CNAME文件的问题</p>
+<p>绑定域名之后，在XXX.github.io仓库中我们可以看到自动创建的CNAME文件，里面记录了我们绑定的域名。但这个文件仅仅存在我们的远程仓库中，而Hexo的部署环节是自动的，导致每次提交的时候都会重新生成public目录来覆盖掉我们当前的远程仓库。最终导致我们每次提交都会导致我们绑定域名的步骤失效。</p>
+<p>解决方案:</p>
+<p>将CNAME文件复制到source目录下，这样自动生成的public目录也会带有CNAME文件。提交时就不会出现远程仓库的CNAME文件消失的问题了。</p>
+</li>
+<li><p>保存项目与保存博客</p>
+<p>Hexo自动提交的是生成的博客本身，是我们项目的产物。而项目本身则不会自动提交到远程保存，所以我们还需要在github上再建立一个新的仓库来保存项目。下面是博客项目的托管地址。其中themes/next是当前我们使用的主题。为了防止嵌套别人的git仓库在我们的代码里，所以在.gitignore中剔除了这部分，需要下载好我们项目代码之后再自己下载这部分代码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#此流程存在问题，请看下一个</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/EVALinux/Blog_hexo.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> Blog_hexo</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>2021-02-03:</p>
+<ul>
+<li><p>工程从远程仓库下载到本地后，因为提交不包含<code>node_modules</code>目录，所以无法直接在当前目录中使用hexo相关指令。</p>
+<p>解决方案:</p>
+<p>成功完成node.js和hexo的安装后。首先使用hexo在本地初始化一个空的博客项目。将空项目中的node_modules拷贝到Blog_hexo目录下即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/EVALinux/Blog_hexo.git</span><br><span class="line"></span><br><span class="line">hexo init <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#cp ./test/node_modules ./Blog_hexo/  #这里用的Linux指令，Windows下直接复制粘贴即可</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#rm -rf ./test/</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> Blog_hexo</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></li>
+<li><p>hexo 及npm部分操作耗时过长的问题<br>npm安装插件默认是从国外服务器下载，网络不稳定，速度慢，耗时长。</p>
+<p>解决方案:<br>切换国内源。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org <span class="comment">#切换源</span></span><br><span class="line"></span><br><span class="line">npm config get registry <span class="comment">#查询是否切换成功，成功的话应该是显示上一条的链接</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">heyuhang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
